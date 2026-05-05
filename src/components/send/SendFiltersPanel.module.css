@@ -1,0 +1,60 @@
+.panel {
+  background: var(--ant-color-bg-container);
+  border-radius: 8px;
+  border: 1px solid var(--ant-color-border-secondary);
+  padding: 16px;
+  position: sticky;
+  top: 24px;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.clearAll {
+  background: none;
+  border: none;
+  color: var(--ant-color-primary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.clearAll:hover {
+  text-decoration: underline;
+}
+
+.section {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ant-color-border-secondary);
+}
+
+.section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.sectionTitle {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.checkboxList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.priceLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ant-color-text-secondary);
+  margin-top: -4px;
+}

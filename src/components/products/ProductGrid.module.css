@@ -1,0 +1,26 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  max-width: 260px;
+}
+
+.sortSelect {
+  min-width: 180px;
+}
+
+@media (max-width: 576px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchInput {
+    max-width: 100%;
+  }
+}

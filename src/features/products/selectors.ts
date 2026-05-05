@@ -1,8 +1,14 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { selectAllProducts } from '@/features/products/productsSlice';
+import { selectAllProducts, selectProductById } from '@/features/products/productsSlice';
 import type { RootState } from '@/app/store';
 
 const selectFilters = (state: RootState) => state.filters;
+const selectSelectedProductId = (state: RootState) => state.ui.selectedProductId;
+
+export const selectSelectedProduct = createSelector(
+  [(state: RootState) => state, selectSelectedProductId],
+  (state, productId) => (productId ? selectProductById(state, productId) : undefined),
+);
 
 export const selectStatusCounts = createSelector(
   [selectAllProducts],
