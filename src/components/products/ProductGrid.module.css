@@ -14,13 +14,39 @@
   min-width: 180px;
 }
 
-@media (max-width: 576px) {
+.sortIconBtn {
+  display: none;
+}
+
+.filterIconBtn {
+  display: none;
+}
+
+@media (max-width: 992px) {
   .toolbar {
-    flex-direction: column;
-    align-items: stretch;
+    justify-content: stretch;
   }
 
   .searchInput {
+    flex: 1;
     max-width: 100%;
+  }
+
+  .sortSelect {
+    display: none;
+  }
+
+  .sortIconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .filterIconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
   }
 }

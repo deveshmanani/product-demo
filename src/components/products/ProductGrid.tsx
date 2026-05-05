@@ -1,4 +1,5 @@
-import { Row, Col, Input, Select, Empty } from 'antd';
+import { Row, Col, Input, Select, Empty, Dropdown, Button } from 'antd';
+import { FilterOutlined, SortAscendingOutlined } from '@ant-design/icons';
 import { useProductFilters } from '@/hooks/useProductFilters';
 import ProductCard from '@/components/products/ProductCard';
 import type { SortBy } from '@/features/products/types';
@@ -13,9 +14,10 @@ const sortOptions: { label: string; value: SortBy }[] = [
 
 interface ProductGridProps {
   onCardClick: (productId: string) => void;
+  onFilterClick?: () => void;
 }
 
-export default function ProductGrid({ onCardClick }: ProductGridProps) {
+export default function ProductGrid({ onCardClick, onFilterClick }: ProductGridProps) {
   const { filters, filteredProducts, handleSearch, handleSort } =
     useProductFilters();
 
@@ -35,6 +37,29 @@ export default function ProductGrid({ onCardClick }: ProductGridProps) {
           allowClear
           onChange={(e) => handleSearch(e.target.value)}
         />
+        {onFilterClick && (
+          <Button
+            icon={<FilterOutlined />}
+            onClick={onFilterClick}
+            className={styles.filterIconBtn}
+          />
+        )}
+        <Dropdown
+          menu={{
+            items: sortOptions.map((opt) => ({
+              key: opt.value,
+              label: opt.label,
+            })),
+            selectedKeys: [filters.sortBy],
+            onClick: ({ key }) => handleSort(key as SortBy),
+          }}
+          trigger={['click']}
+        >
+          <Button
+            icon={<SortAscendingOutlined />}
+            className={styles.sortIconBtn}
+          />
+        </Dropdown>
       </div>
 
       {filteredProducts.length === 0 ? (

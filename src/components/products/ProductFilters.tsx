@@ -1,5 +1,5 @@
-import { Radio, Input, Select, Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Radio, Input, Select, Button, Dropdown } from 'antd';
+import { PlusOutlined, SortAscendingOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { openAddProductModal } from '@/features/ui/uiSlice';
 import { selectStatusCounts } from '@/features/products/selectors';
@@ -39,12 +39,30 @@ export default function ProductFilters() {
         </Radio.Button>
       </Radio.Group>
 
-      <Input.Search
-        className={styles.searchInput}
-        placeholder="Search by name or ID"
-        allowClear
-        onChange={(e) => handleSearch(e.target.value)}
-      />
+      <div className={styles.searchRow}>
+        <Input.Search
+          className={styles.searchInput}
+          placeholder="Search by name or ID"
+          allowClear
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+        <Dropdown
+          menu={{
+            items: sortOptions.map((opt) => ({
+              key: opt.value,
+              label: opt.label,
+            })),
+            selectedKeys: [filters.sortBy],
+            onClick: ({ key }) => handleSort(key as SortBy),
+          }}
+          trigger={['click']}
+        >
+          <Button
+            icon={<SortAscendingOutlined />}
+            className={styles.sortIconBtn}
+          />
+        </Dropdown>
+      </div>
 
       <Select
         className={styles.sortSelect}

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Checkbox, Slider, Typography } from 'antd';
+import { Checkbox, Collapse, Slider, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import {
   toggleCategory,
@@ -13,6 +13,8 @@ import { PRICE_RANGE } from '@/constants';
 import styles from './SendFiltersPanel.module.css';
 
 const { Text } = Typography;
+
+const ALL_KEYS = ['categories', 'price', 'vendors'];
 
 export default function SendFiltersPanel() {
   const dispatch = useAppDispatch();
@@ -36,6 +38,62 @@ export default function SendFiltersPanel() {
     [dispatch],
   );
 
+  const collapseItems = [
+    {
+      key: 'categories',
+      label: <Text strong style={{ fontSize: 13 }}>Categories</Text>,
+      children: (
+        <div className={styles.checkboxList}>
+          {mockCategories.map((cat) => (
+            <Checkbox
+              key={cat}
+              checked={filters.categories.includes(cat)}
+              onChange={() => dispatch(toggleCategory(cat))}
+            >
+              {cat}
+            </Checkbox>
+          ))}
+        </div>
+      ),
+    },
+    {
+      key: 'price',
+      label: <Text strong style={{ fontSize: 13 }}>Price Range</Text>,
+      children: (
+        <>
+          <Slider
+            range
+            min={PRICE_RANGE.MIN}
+            max={PRICE_RANGE.MAX}
+            value={localRange}
+            onChange={handleRangeChange}
+          />
+          <div className={styles.priceLabels}>
+            <span>${localRange[0]}</span>
+            <span>${localRange[1]}</span>
+          </div>
+        </>
+      ),
+    },
+    {
+      key: 'vendors',
+      label: <Text strong style={{ fontSize: 13 }}>Vendors</Text>,
+      children: (
+        <div className={styles.checkboxList}>
+          {mockVendors.map((vendor) => (
+            <Checkbox
+              key={vendor}
+              checked={filters.vendors.includes(vendor)}
+              onChange={() => dispatch(toggleVendor(vendor))}
+            >
+              {vendor}
+            </Checkbox>
+          ))}
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className={styles.panel}>
       <div className={styles.panelHeader}>
@@ -49,50 +107,13 @@ export default function SendFiltersPanel() {
         </button>
       </div>
 
-      <div className={styles.section}>
-        <Text strong className={styles.sectionTitle}>Categories</Text>
-        <div className={styles.checkboxList}>
-          {mockCategories.map((cat) => (
-            <Checkbox
-              key={cat}
-              checked={filters.categories.includes(cat)}
-              onChange={() => dispatch(toggleCategory(cat))}
-            >
-              {cat}
-            </Checkbox>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.section}>
-        <Text strong className={styles.sectionTitle}>Price Range</Text>
-        <Slider
-          range
-          min={PRICE_RANGE.MIN}
-          max={PRICE_RANGE.MAX}
-          value={localRange}
-          onChange={handleRangeChange}
-        />
-        <div className={styles.priceLabels}>
-          <span>${localRange[0]}</span>
-          <span>${localRange[1]}</span>
-        </div>
-      </div>
-
-      <div className={styles.section}>
-        <Text strong className={styles.sectionTitle}>Vendors</Text>
-        <div className={styles.checkboxList}>
-          {mockVendors.map((vendor) => (
-            <Checkbox
-              key={vendor}
-              checked={filters.vendors.includes(vendor)}
-              onChange={() => dispatch(toggleVendor(vendor))}
-            >
-              {vendor}
-            </Checkbox>
-          ))}
-        </div>
-      </div>
+      <Collapse
+        ghost
+        bordered={false}
+        className={styles.collapse}
+        defaultActiveKey={ALL_KEYS}
+        items={collapseItems}
+      />
     </div>
   );
 }

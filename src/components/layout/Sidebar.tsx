@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu, Switch, Avatar } from 'antd';
+import { Menu, Switch, Avatar, Tooltip } from 'antd';
 import {
   DashboardOutlined,
   ShoppingOutlined,
@@ -8,6 +8,8 @@ import {
   MoonOutlined,
   SunOutlined,
   UserOutlined,
+  LeftOutlined,
+  RightOutlined,
 } from '@ant-design/icons';
 import { useTheme } from '@/hooks/useTheme';
 import { ROUTES } from '@/constants';
@@ -36,7 +38,12 @@ const menuItems = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  collapsed: boolean;
+  onToggle: () => void;
+}
+
+export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const { isDark, toggleTheme } = useTheme();
@@ -53,12 +60,21 @@ export default function Sidebar() {
     <div className={styles.sidebar}>
       <div className={styles.logoSection}>
         <div className={styles.logoIcon}>B</div>
-        <span className={styles.logoText}>BIRDBOX</span>
+        {!collapsed && <span className={styles.logoText}>BIRDBOX</span>}
+        <button
+          type="button"
+          className={styles.toggleBtn}
+          onClick={onToggle}
+          aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {collapsed ? <RightOutlined /> : <LeftOutlined />}
+        </button>
       </div>
 
       <div className={styles.navSection}>
         <Menu
           mode="inline"
+          inlineCollapsed={collapsed}
           selectedKeys={[location.pathname]}
           items={menuItems}
           onClick={handleMenuClick}
@@ -67,23 +83,42 @@ export default function Sidebar() {
       </div>
 
       <div className={styles.bottomSection}>
-        <div className={styles.themeToggle}>
-          {isDark ? <MoonOutlined /> : <SunOutlined />}
-          <span>Dark Mode</span>
-          <Switch
-            size="small"
-            checked={isDark}
-            onChange={toggleTheme}
-          />
-        </div>
+        {collapsed ? (
+          <>
+            <Tooltip title="Toggle dark mode" placement="right">
+              <button
+                type="button"
+                className={styles.collapsedThemeBtn}
+                onClick={toggleTheme}
+              >
+                {isDark ? <MoonOutlined /> : <SunOutlined />}
+              </button>
+            </Tooltip>
+            <Tooltip title="John Doe" placement="right">
+              <Avatar size={36} icon={<UserOutlined />} style={{ cursor: 'default' }} />
+            </Tooltip>
+          </>
+        ) : (
+          <>
+            <div className={styles.themeToggle}>
+              {isDark ? <MoonOutlined /> : <SunOutlined />}
+              <span>Dark Mode</span>
+              <Switch
+                size="small"
+                checked={isDark}
+                onChange={toggleTheme}
+              />
+            </div>
 
-        <div className={styles.userSection}>
-          <Avatar size={36} icon={<UserOutlined />} />
-          <div>
-            <div className={styles.userName}>John Doe</div>
-            <div className={styles.userRole}>Admin</div>
-          </div>
-        </div>
+            <div className={styles.userSection}>
+              <Avatar size={36} icon={<UserOutlined />} />
+              <div>
+                <div className={styles.userName}>John Doe</div>
+                <div className={styles.userRole}>Admin</div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

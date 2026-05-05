@@ -9,7 +9,7 @@
 .statusGroup :global(.ant-radio-button-wrapper) {
   border-radius: 8px !important;
   border: 1px solid var(--ant-color-border);
-  margin-right: 0;
+  margin-right: 4px;
   font-size: 13px;
   padding: 0 14px;
   height: 34px;
@@ -46,6 +46,10 @@
   color: #fff;
 }
 
+.searchRow {
+  display: none;
+}
+
 .searchInput {
   width: 220px;
 }
@@ -58,19 +62,44 @@
   min-width: 140px;
 }
 
+.sortIconBtn {
+  display: none;
+}
+
 .spacer {
   flex: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .filtersBar {
     gap: 8px;
   }
-  .searchInput {
+
+  .searchRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     width: 100%;
+    order: 1;
   }
-  .sortSelect,
-  .bulkSelect {
-    min-width: 120px;
+
+  .searchRow .searchInput {
+    flex: 1;
+    width: auto;
+  }
+
+  .sortIconBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .sortSelect {
+    display: none;
+  }
+
+  .spacer {
+    display: none;
   }
 }

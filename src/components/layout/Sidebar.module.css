@@ -5,7 +5,7 @@
 }
 
 .logoSection {
-  padding: 20px 24px;
+  padding: 20px 16px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -29,6 +29,29 @@
   font-size: 18px;
   font-weight: 600;
   color: var(--ant-color-text);
+  white-space: nowrap;
+}
+
+.toggleBtn {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--ant-color-border);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ant-color-text-secondary);
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggleBtn:hover {
+  background: var(--ant-color-fill-tertiary);
+  color: var(--ant-color-text);
 }
 
 .navSection {
@@ -37,10 +60,11 @@
 }
 
 .bottomSection {
-  padding: 16px 24px;
+  padding: 16px;
   border-top: 1px solid var(--ant-color-border-secondary);
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 16px;
 }
 
@@ -50,6 +74,23 @@
   gap: 10px;
   font-size: 14px;
   color: var(--ant-color-text-secondary);
+  width: 100%;
+}
+
+.collapsedThemeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--ant-color-text-secondary);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapsedThemeBtn:hover {
+  color: var(--ant-color-text);
 }
 
 .userSection {
@@ -57,6 +98,7 @@
   align-items: center;
   gap: 10px;
   padding: 8px 0;
+  width: 100%;
 }
 
 .userName {
