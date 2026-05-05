@@ -1,0 +1,76 @@
+.filtersBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.statusGroup :global(.ant-radio-button-wrapper) {
+  border-radius: 8px !important;
+  border: 1px solid var(--ant-color-border);
+  margin-right: 0;
+  font-size: 13px;
+  padding: 0 14px;
+  height: 34px;
+  line-height: 32px;
+}
+
+.statusGroup :global(.ant-radio-button-wrapper::before) {
+  display: none;
+}
+
+.statusGroup :global(.ant-radio-button-wrapper-checked) {
+  background: var(--ant-color-primary) !important;
+  border-color: var(--ant-color-primary) !important;
+  color: #fff !important;
+}
+
+.countBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 6px;
+  margin-left: 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--ant-color-fill-tertiary);
+  color: var(--ant-color-text-secondary);
+}
+
+.statusGroup :global(.ant-radio-button-wrapper-checked) .countBadge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+.searchInput {
+  width: 220px;
+}
+
+.sortSelect {
+  min-width: 180px;
+}
+
+.bulkSelect {
+  min-width: 140px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .filtersBar {
+    gap: 8px;
+  }
+  .searchInput {
+    width: 100%;
+  }
+  .sortSelect,
+  .bulkSelect {
+    min-width: 120px;
+  }
+}

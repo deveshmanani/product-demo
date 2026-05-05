@@ -4,6 +4,19 @@ import type { RootState } from '@/app/store';
 
 const selectFilters = (state: RootState) => state.filters;
 
+export const selectStatusCounts = createSelector(
+  [selectAllProducts],
+  (products) => {
+    let active = 0;
+    let inactive = 0;
+    for (const p of products) {
+      if (p.status === 'active') active++;
+      else inactive++;
+    }
+    return { all: products.length, active, inactive };
+  },
+);
+
 export const selectFilteredProducts = createSelector(
   [selectAllProducts, selectFilters],
   (products, filters) => {

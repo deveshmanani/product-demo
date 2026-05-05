@@ -1,0 +1,30 @@
+.tableWrapper {
+  background: var(--ant-color-bg-container);
+  border-radius: 8px;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.productName {
+  font-weight: 600;
+}
+
+.productId {
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  font-size: 12px;
+  color: var(--ant-color-text-secondary);
+}
+
+.paginationFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 13px;
+  color: var(--ant-color-text-secondary);
+}

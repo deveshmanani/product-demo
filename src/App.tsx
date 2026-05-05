@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { ConfigProvider, theme, Spin } from 'antd';
+import { App as AntApp, ConfigProvider, theme, Spin } from 'antd';
 import { store } from '@/app/store';
 import { useAppSelector } from '@/app/hooks';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
@@ -32,25 +32,27 @@ function AppContent() {
         },
       }}
     >
-      <BrowserRouter>
-        <AppLayout>
-          <ErrorBoundary>
-            <Routes>
-              <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.PRODUCTS} replace />} />
-              <Route path={ROUTES.PRODUCTS} element={<ProductListPage />} />
-              <Route
-                path={ROUTES.SEND}
-                element={
-                  <Suspense fallback={suspenseFallback}>
-                    <SendProductPage />
-                  </Suspense>
-                }
-              />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </ErrorBoundary>
-        </AppLayout>
-      </BrowserRouter>
+      <AntApp>
+        <BrowserRouter>
+          <AppLayout>
+            <ErrorBoundary>
+              <Routes>
+                <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.PRODUCTS} replace />} />
+                <Route path={ROUTES.PRODUCTS} element={<ProductListPage />} />
+                <Route
+                  path={ROUTES.SEND}
+                  element={
+                    <Suspense fallback={suspenseFallback}>
+                      <SendProductPage />
+                    </Suspense>
+                  }
+                />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </ErrorBoundary>
+          </AppLayout>
+        </BrowserRouter>
+      </AntApp>
     </ConfigProvider>
   );
 }

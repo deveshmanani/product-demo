@@ -1,0 +1,66 @@
+.modalContent {
+  display: flex;
+  gap: 24px;
+}
+
+.leftColumn {
+  flex: 1;
+  min-width: 0;
+}
+
+.rightColumn {
+  width: 240px;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ant-color-text);
+  margin-bottom: 16px;
+}
+
+.dragger :global(.ant-upload-drag) {
+  border-radius: 10px;
+  border: 2px dashed var(--ant-color-border);
+  background: var(--ant-color-bg-layout);
+  padding: 16px 12px;
+  max-height: 200px;
+}
+
+.dragger :global(.ant-upload-drag:hover) {
+  border-color: var(--ant-color-primary);
+}
+
+.uploadIcon {
+  font-size: 36px !important;
+  color: var(--ant-color-primary) !important;
+}
+
+.uploadText {
+  font-size: 13px;
+  color: var(--ant-color-text-secondary);
+  margin-top: 8px;
+}
+
+.browseLink {
+  color: var(--ant-color-primary);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.uploadHint {
+  font-size: 11px;
+  color: var(--ant-color-text-tertiary);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .modalContent {
+    flex-direction: column;
+  }
+
+  .rightColumn {
+    width: 100%;
+  }
+}
