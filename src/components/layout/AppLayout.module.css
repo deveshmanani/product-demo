@@ -1,0 +1,30 @@
+.layoutContainer {
+  min-height: 100vh;
+  background: transparent;
+}
+
+.sider {
+  overflow: auto;
+  height: 100vh;
+  position: fixed !important;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  background: var(--ant-color-bg-container) !important;
+  border-right: 1px solid var(--ant-color-border-secondary);
+}
+
+.contentArea {
+  margin-left: 250px;
+  min-height: 100vh;
+  padding: 24px 32px;
+  background: var(--ant-color-bg-layout);
+}
+
+@media (max-width: 768px) {
+  .contentArea {
+    margin-left: 80px;
+    padding: 16px;
+  }
+}
