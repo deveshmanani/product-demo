@@ -46,6 +46,10 @@
   color: #fff;
 }
 
+.desktopSearch {
+  width: 220px;
+}
+
 .searchRow {
   display: none;
 }
@@ -93,6 +97,10 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+  }
+
+  .desktopSearch {
+    display: none;
   }
 
   .sortSelect {

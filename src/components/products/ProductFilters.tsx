@@ -39,6 +39,13 @@ export default function ProductFilters() {
         </Radio.Button>
       </Radio.Group>
 
+      <Input.Search
+        className={styles.desktopSearch}
+        placeholder="Search by name or ID"
+        allowClear
+        onChange={(e) => handleSearch(e.target.value)}
+      />
+
       <div className={styles.searchRow}>
         <Input.Search
           className={styles.searchInput}
@@ -65,20 +72,20 @@ export default function ProductFilters() {
       </div>
 
       <Select
-        className={styles.sortSelect}
-        placeholder="Sort"
-        options={sortOptions}
-        value={filters.sortBy}
-        onChange={handleSort}
-      />
-
-      <Select
         className={styles.bulkSelect}
         placeholder="Bulk Action"
         disabled
       />
 
       <div className={styles.spacer} />
+
+      <Select
+        className={styles.sortSelect}
+        placeholder="Sort"
+        options={sortOptions}
+        value={filters.sortBy}
+        onChange={handleSort}
+      />
 
       <Button
         type="primary"
